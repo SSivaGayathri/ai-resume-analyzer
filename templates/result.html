@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Results</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+
+  <body>
+    <!-- 🌙 Dark Mode Toggle -->
+    <button class="toggle-btn" onclick="toggleMode()">🌙</button>
+
+    <div class="result-box">
+      <h2>📊 Resume Dashboard</h2>
+
+      <!-- 🎯 Circular Score -->
+      <div class="circle" style="--score: {{ score }}%">{{ score }}%</div>
+
+      <!-- 📈 Progress Bar -->
+      <div class="progress">
+        <div class="progress-bar" data-width="{{ score }}">{{ score }}%</div>
+      </div>
+
+      <!-- 📊 Chart -->
+      <h4>Skill Analysis</h4>
+      <canvas id="skillChart"></canvas>
+
+      <!-- ✅ Matched Skills -->
+      <h4>Matched Skills</h4>
+      <ul>
+        {% for skill in matched %}
+        <li class="matched">{{ skill }}</li>
+        {% endfor %}
+      </ul>
+
+      <!-- ❌ Missing Skills -->
+      <h4>Missing Skills</h4>
+      <ul>
+        {% for skill in missing %}
+        <li class="missing">{{ skill }}</li>
+        {% endfor %}
+      </ul>
+
+      <!-- 💡 Suggestions -->
+      <h4>Suggestions</h4>
+      <ul>
+        {% for s in suggestions %}
+        <li>{{ s }}</li>
+        {% endfor %}
+      </ul>
+
+      <br />
+      <a href="/" style="color: #ffd369; text-decoration: none"> ⬅ Go Back </a>
+    </div>
+
+    <!-- 🌙 Dark Mode Script -->
+    <script>
+      function toggleMode() {
+        document.body.classList.toggle("dark");
+      }
+    </script>
+
+    <!-- 📈 Progress Animation -->
+    <script>
+      const bar = document.querySelector(".progress-bar");
+      const width = bar.getAttribute("data-width");
+
+      setTimeout(() => {
+        bar.style.width = width + "%";
+      }, 300);
+    </script>
+
+    <!-- 📊 Modern Doughnut Chart -->
+    <script>
+      const matchedCount = JSON.parse("{{ matched | length }}");
+      const missingCount = JSON.parse("{{ missing | length }}");
+
+      const ctx = document.getElementById("skillChart").getContext("2d");
+
+      new Chart(ctx, {
+        type: "doughnut",
+        data: {
+          labels: ["Matched", "Missing"],
+          datasets: [
+            {
+              data: [matchedCount, missingCount],
+              backgroundColor: ["#00ffcc", "#ff4d4d"],
+              borderWidth: 0,
+            },
+          ],
+        },
+        options: {
+          cutout: "70%",
+          responsive: true,
+          plugins: {
+            legend: {
+              position: "bottom", // 🔥 better UI
+              labels: {
+                color: "white",
+                font: {
+                  size: 12,
+                },
+              },
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

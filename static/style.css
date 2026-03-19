@@ -1,0 +1,182 @@
+/* 🌈 Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* 🌍 Animated Gradient Background */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    min-height: 100vh;
+
+    background: linear-gradient(-45deg, #ea66dd, #994ba2, #32a3bd, #5a21b0);
+    background-size: 400% 400%;
+    animation: gradientMove 10s ease infinite;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+
+    transition: all 0.3s ease;
+}
+
+/* Animation */
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* 🌙 Dark Mode */
+body.dark {
+    background: #121212;
+    color: #eee;
+}
+
+/* 📦 Dashboard Card */
+.result-box {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+
+    padding: 50px;
+    width: 80%;
+    max-width: 1000px;
+
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+
+    transition: all 0.3s ease;
+}
+
+/* 🔘 Toggle Button */
+.toggle-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+
+    padding: 8px 15px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+
+    background: #fff;
+}
+
+/* ✍️ Textarea */
+textarea {
+    width: 90%;
+    height: 200px;
+    padding: 15px;
+
+    border-radius: 15px;
+    border: 2px solid transparent;
+    outline: none;
+
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+
+    background: #ffffff;
+    color: #333;
+
+    box-shadow: 
+        inset 0 2px 6px rgba(0,0,0,0.1),
+        0 4px 15px rgba(0,0,0,0.1);
+
+    transition: all 0.3s ease;
+}
+
+/* 📂 Upload Box */
+.upload-box {
+    width: 60%;          /* ⬇ smaller */
+    margin: 20px auto;   /* center it */
+
+    border: 2px dashed rgba(255,255,255,0.5);
+    padding: 25px;       /* ⬇ reduce height */
+    border-radius: 20px;
+
+    text-align: center;
+    cursor: pointer;
+
+    background: rgba(255,255,255,0.1);
+    transition: all 0.3s ease;
+}
+
+.upload-box:hover {
+    background: rgba(255,255,255,0.2);
+    transform: scale(1.02);
+}
+
+/* Drag active */
+.upload-box.dragover {
+    border-color: #ffd369;
+    background: rgba(255, 211, 105, 0.2);
+}
+
+/* File name */
+#file-name {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #ffd369;
+}
+
+/* 🔘 Button */
+button {
+    margin-top: 20px;
+    padding: 12px 25px;
+    border-radius: 12px;
+
+    background: linear-gradient(135deg, #ffd369, #ffb703);
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* 🎯 Circular Score */
+.circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 20px auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 24px;
+    font-weight: bold;
+
+    background: conic-gradient(#bb00ff 0%, #ff0084 var(--score), #ddd var(--score));
+    color: black;
+}
+
+/* 📊 Smaller Chart */
+canvas {
+    max-width: 250px !important;
+    margin: 20px auto;
+}
+
+/* 📋 Skills */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 10px;
+}
+
+.matched {
+    background: rgba(0,255,150,0.3);
+}
+
+.missing {
+    background: rgba(255,80,80,0.3);
+}
